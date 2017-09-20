@@ -9,22 +9,22 @@ public class SimpleLoop {
 
   public static void main(String[] args) {
     SimpleLoop loop = new SimpleLoop();
-    loop.run();
+    try {
+      loop.run();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   public SimpleLoop(){
     processWidget = new ProcessWidget();
   }
 
-  void run(){
+  void run() throws InterruptedException {
     while (isRunning) {
       update();
       // aVeryLongTask();
-      try {
-        Thread.sleep(30);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
+      Thread.sleep(20);
     }
   }
 
