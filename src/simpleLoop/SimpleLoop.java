@@ -9,6 +9,7 @@ public class SimpleLoop {
 
   public static void main(String[] args) {
     SimpleLoop loop = new SimpleLoop();
+
     try {
       loop.run();
     } catch (InterruptedException e) {
