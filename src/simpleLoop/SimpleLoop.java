@@ -2,10 +2,12 @@ package simpleLoop;
 
 
 import java.util.Date;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SimpleLoop {
   private boolean isRunning = true;
   private ProcessWidget processWidget;
+  private static ConcurrentLinkedQueue<Thread> queue = new ConcurrentLinkedQueue<Thread>();
 
   public static void main(String[] args) {
     SimpleLoop loop = new SimpleLoop();
