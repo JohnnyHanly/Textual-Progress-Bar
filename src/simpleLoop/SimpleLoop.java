@@ -11,6 +11,7 @@ public class SimpleLoop {
 
   public static void main(String[] args) {
     SimpleLoop loop = new SimpleLoop();
+    ProgressMessage pm = new ProgressMessage();//object of ProgressMessage class
 
     try {
       loop.run();
@@ -28,7 +29,8 @@ public class SimpleLoop {
   void run() throws InterruptedException {
     while (isRunning) {
       update();
-      //t1.run();
+
+      //t.start();
       // aVeryLongTask();
       Thread.sleep(20);
     }
@@ -38,22 +40,26 @@ public class SimpleLoop {
     System.out.print("\r" + processWidget.display() + " " + new Date());
   }
 
-  void onProgressUpdate() {
+  void onProgressUpdate(float f) {//this method updates processWidget
+    double d = f;
+    processWidget.setProgress(d);
   }
 
   void onComplete() {
+    System.out.println("Task Complete!");
   }
 
-  Thread t1 = new Thread(new Runnable() { //thread that runs aVeryLongTask
+  Thread t = new Thread(new Runnable() { //worker thread that runs aVeryLongTask
     @Override
     public void run() {
       aVeryLongTask();
     }
   });
 
-  void aVeryLongTask(){ //this method is to be put into a thread...?
+  void aVeryLongTask(){ //this method fills the progress bar in ProcessWidget...?
     for(int i = 0 ; i < 100; i++){
       final float progess = (float)i/100;
+
       try {
         Thread.sleep(30);
       } catch (InterruptedException e) {
