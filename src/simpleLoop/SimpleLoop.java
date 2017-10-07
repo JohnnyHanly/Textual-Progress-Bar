@@ -11,7 +11,8 @@ public class SimpleLoop {
 
   public static void main(String[] args) {
     SimpleLoop loop = new SimpleLoop();
-    ProgressMessage pm = new ProgressMessage();//object of ProgressMessage class
+    ProgressMessage pm = new ProgressMessage(0);//object of ProgressMessage class
+    //clq.add(t);   //clq and threads added to clq in main must be static...?
 
     try {
       loop.run();
@@ -29,7 +30,6 @@ public class SimpleLoop {
   void run() throws InterruptedException {
     while (isRunning) {
       update();
-
       //t.start();
       // aVeryLongTask();
       Thread.sleep(20);
@@ -49,14 +49,14 @@ public class SimpleLoop {
     System.out.println("Task Complete!");
   }
 
-  Thread t = new Thread(new Runnable() { //worker thread that runs aVeryLongTask
-    @Override
+  static Thread t = new Thread(new Runnable() { //worker thread that runs aVeryLongTask
+    @Override                                   //calls ProgressMessage and CompletionMessage class obj?
     public void run() {
       aVeryLongTask();
     }
   });
 
-  void aVeryLongTask(){ //this method fills the progress bar in ProcessWidget...?
+  static void aVeryLongTask(){ //this method fills the progress bar in ProcessWidget...?
     for(int i = 0 ; i < 100; i++){
       final float progess = (float)i/100;
 
