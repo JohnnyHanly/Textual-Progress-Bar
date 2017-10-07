@@ -12,8 +12,7 @@ public class SimpleLoop {
   public static void main(String[] args) {
     SimpleLoop loop = new SimpleLoop();
     ProgressMessage pm = new ProgressMessage(0);//object of ProgressMessage class
-
-
+      t.start();//aVeryLongTask thread is running in the background, update() is unaffected
     try {
       loop.run();
     } catch (InterruptedException e) {
@@ -30,7 +29,7 @@ public class SimpleLoop {
   void run() throws InterruptedException {
     while (isRunning) {
       update();
-      // aVeryLongTask();
+      //aVeryLongTask();
       Thread.sleep(20);
     }
   }
@@ -57,6 +56,7 @@ public class SimpleLoop {
   static void aVeryLongTask(){ //this method fills the progress bar in ProcessWidget...?
     for(int i = 0 ; i < 100; i++){
       final float progess = (float)i/100;
+        //System.out.println("progress: " + progess*100 + "%");
 
       try {
         Thread.sleep(30);
