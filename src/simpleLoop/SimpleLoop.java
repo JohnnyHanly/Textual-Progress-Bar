@@ -7,12 +7,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class SimpleLoop {
   private boolean isRunning = true;
   private ProcessWidget processWidget;
-  private static ConcurrentLinkedQueue<Thread> clq = new ConcurrentLinkedQueue<Thread>();
+  private static ConcurrentLinkedQueue<String> clq = new ConcurrentLinkedQueue<String>(); //clq is a queue for string 'messages'...?
 
   public static void main(String[] args) {
     SimpleLoop loop = new SimpleLoop();
     ProgressMessage pm = new ProgressMessage(0);//object of ProgressMessage class
-    //clq.add(t);   //clq and threads added to clq in main must be static...?
+
 
     try {
       loop.run();
@@ -30,7 +30,6 @@ public class SimpleLoop {
   void run() throws InterruptedException {
     while (isRunning) {
       update();
-      //t.start();
       // aVeryLongTask();
       Thread.sleep(20);
     }
@@ -44,7 +43,6 @@ public class SimpleLoop {
     double d = f;
     processWidget.setProgress(d);
   }
-
   void onComplete() {
     System.out.println("Task Complete!");
   }
