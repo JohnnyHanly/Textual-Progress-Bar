@@ -4,6 +4,7 @@ public class ProcessWidget {
 
   private double progressPercentage = 0;
 
+
   public void setProgress(double progressPercentage) {
 
     this.progressPercentage = progressPercentage;
